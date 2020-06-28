@@ -118,7 +118,6 @@ export default {
     };
   },
   watch: {
-    //侦听对象的改动
     area() {
       this.getList();
       this.page = 1;
@@ -150,7 +149,6 @@ export default {
       }).then(res => {
         // console.log(res);
         this.list = res.data.data;
-        //修饰一下播放次数
         for (let i = 0; i < this.list.length; i++) {
           this.list[i].playCount =
             this.list[i].playCount > 10000
@@ -167,9 +165,7 @@ export default {
           let durations = min + ":" + sec;
           this.list[i].duration = `${min}:${sec}`;
         }
-        //保存总的mv数量
         if (res.data.count) {
-          //若接口没有问题（接口数据正确）就赋值
           this.total = res.data.count;
         }
         // console.log(this.total);
