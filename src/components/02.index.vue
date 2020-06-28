@@ -19,8 +19,7 @@
     </div>
     <!-- 右侧容器 -->
     <div class="main">
-      <!-- <discovery></discovery>不使用路由时直接显示状态 -->
-      <!-- 路由的出口 -->
+
       <router-view></router-view>
     </div>
     <div class="mp3player">
@@ -50,7 +49,7 @@
 </template>
 
 <script>
-import discovery from "../views/01.discovery"; //默认状态下引入01.discovery组件
+import discovery from "../views/01.discovery"; 
 import axios from "axios";
 export default {
   name: "index",
