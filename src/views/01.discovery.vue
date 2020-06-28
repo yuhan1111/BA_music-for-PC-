@@ -3,7 +3,6 @@
 <!-- 轮播图 -->
     <div class="lunbo">
       <el-carousel :interval="4000" type="card" height="200px">
-      <!-- 循环获取到的接口数据 -->
       <el-carousel-item v-for="(item, index) in banners" :key="index" @click="">
       <img :src="item.imageUrl" alt="" class="lunbotu">
       </el-carousel-item>
@@ -91,7 +90,6 @@ export default {
     }
   },
   created() {
-   //2轮播图接口
     axios({
       url:'https://autumnfish.cn/banner',
       method: 'get',
@@ -104,7 +102,6 @@ export default {
       url:'https://autumnfish.cn/personalized',
       method: 'get',
       params:{
-        //控制获取的数据量
         limit:12
       },
     }).then(res =>{
@@ -141,9 +138,9 @@ export default {
         },
       }).then(res=>{
         // console.log(res);
-        let url = res.data.data[0].url //这里涉及倒要传递url到其他组件，所以赋值到变量url以方便传递
+        let url = res.data.data[0].url 
         // console.log(this.$parent.musicUrl);
-        this.$parent.musicUrl = url //设置给父组件的播放地址      
+        this.$parent.musicUrl = url   
       })
       
     },
