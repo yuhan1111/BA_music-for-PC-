@@ -56,7 +56,7 @@ export default {
   data(){
     return{
       lists:[],
-      tag:'0',//默认为0，对应全部这个接口
+      tag:'0',
     };
   },
   //侦听
@@ -68,8 +68,8 @@ export default {
   created(){
     this.getList();
   },
-  methods:{ //对于需要多次调用的直接封装为方法
-    getList(){//获取最新音乐列表数据函数      
+  methods:{
+    getList(){
       axios({
         url:'https://autumnfish.cn/top/song',
         method:'get',
@@ -109,8 +109,8 @@ export default {
         // console.log(res);
         let url = res.data.data[0].url
         // console.log(url);     
-        // console.log(this.$parent); //得到父组件的musicUrl对象
-        this.$parent.musicUrl = url;  //将点击请求的值传赋值到父组件musicUrl对象上      
+        // console.log(this.$parent); 
+        this.$parent.musicUrl = url;       
       })
     },
     playAll(){
