@@ -56,13 +56,7 @@
         </ul>
       </div>
     </div>
-
-    <!-- 分页器 -->
-    <!-- total 总item数 -->
-    <!-- current-page 当前页 -->
-    <!-- page-size 每页多少条数据 -->
-    <!-- @current-change 页码改变事件 -->
-    <!-- 到methods里面调用 handleCurrentChange-->
+    
     <el-pagination class="p-page"
       @current-change="handleCurrentChange"      
       background
@@ -75,49 +69,46 @@
 </template>
 
 <script>
-//导入axios
+
 import axios from 'axios'
 export default {
   name: 'recommand',
   data(){
-    return{ //起始值
-      //item数
+    return{ 
       total:0,
       //页码
       page:1,
       //顶部的推荐歌单
       topList:{},
       list:[],
-      tag:"全部",
-      //offset 页码改变的时候改变offset        
+      tag:"全部",   
     }
   },
-  //侦听器
+
   watch:{
     tag(){
-      //精品歌单
+
     this.topData()  
-      //歌单列表
+
     this.listData()
-      //监听到tag发生改变时触发 实现你点击了分页符后再点击其他tag分页符自动跳转到第一页这个功能
+
     this.page = 1
     }   
   },
   created(){
-    //精品歌单
+
     this.topData()
-    //歌单列表
+
     this.listData()
   },
   methods: {
-    //抽取的方法1 精品歌单数据 //因为这两个接口及参数多个地方调用，直接将他写成方法调用
+
     topData(){
       axios({
       url:'https://autumnfish.cn/top/playlist/highquality',
       method:'get',
       params: {
         limit:1,
-        // 分类数据
         cat: this.tag,
       }
     }).then(res=>{ 
@@ -125,17 +116,14 @@ export default {
       this.topList = res.data.playlists[0]
     })
     },
-
-    //抽取的方法2 歌单列表 
+    
     listData(){
       axios({
       url:'https://autumnfish.cn/top/playlist/',
       method:'get',
       params:{
-        limit:10, //每页要显示的item数
-        // offset:0, 起始值 offset:偏移数量，用于分页，如：（页数-1）*每页要显示的item数
+        limit:10, 
         offset: (this.page-1)*10,
-        // 分类数据
         cat: this.tag,
       }
     }).then(res=>{
@@ -147,12 +135,9 @@ export default {
     toPlayList(id){
       this.$router.push(`/playlist?q=${id}`)
     },
-    //页码改变事件
     handleCurrentChange(val){
       // console.log(`当前页：${val}`);
-      // 保存页码
       this.page = val
-      // 重新获取数据 即时更新列表
       this.listData()
     }
   }
