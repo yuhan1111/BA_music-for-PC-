@@ -30,9 +30,9 @@ export default {
         toResult(){
             // 非空判断
             if(this.inputValue == ''){
-                this.$message.warning('请输入要搜索内容') //elment- ui的警示框
-            } else { //转到搜索页
-                this.$router.push(`/result?q=${this.inputValue}`)  // 相当于 this.$router.push('/result') 拼接上参数
+                this.$message.warning('请输入要搜索内容') 
+            } else { 
+                this.$router.push(`/result?q=${this.inputValue}`)  
             }
         },
     },
